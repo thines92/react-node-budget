@@ -3,12 +3,12 @@ import EditTransaction from "./EditTransaction";
 
 class Transaction extends React.Component {
     setEditState = () => {
-        this.props.setEditState(this.props.transaction._id)
+        // this.props.setEditState(this.props.transaction._id)
+        this.props.setEditState({
+            ...this.props.transaction,
+            editState: true
+        })
     };
-
-    setViewState = () => {
-        this.props.setViewState()
-    }
 
     renderRow() {
         const { _id, type, source } = this.props.transaction;
@@ -38,12 +38,12 @@ class Transaction extends React.Component {
     }
 
     renderEdit(transaction) {
-        return <EditTransaction editTransaction={this.props.editTransaction} transaction={transaction} setViewState={this.setViewState} />
+        return <EditTransaction editTransaction={this.props.editTransaction} transaction={transaction} setEditState={this.setEditState} />
     }
 
     renderContent() {
         console.log('this.transactrion', this.props.transaction)
-        return this.props.edittingTransaction && this.props.edittedTransaction == this.props.transaction._id ? this.renderEdit(this.props.transaction) : this.renderRow() 
+        return this.props.transaction.editState ? this.renderEdit(this.props.transaction) : this.renderRow() 
     }
 
     render() {

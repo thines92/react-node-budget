@@ -1,7 +1,3 @@
-import {
-  items
-} from "../staticItems";
-
 export default (
   state = {
     transactions: [],
@@ -33,25 +29,29 @@ export default (
       };
     }
     case "EDIT_TRANSACTION": {
-      const editedTransactionIndex = state.transactions.findIndex(
-        (transaction) => transaction._id == action.payload._id
-      );
-      const editedTransactions = state.transactions.splice(
-        editedTransactionIndex, 1, action.payload
-      );
-
       return {
         ...state,
-        transactions: state.transactions,
-        edittingTransaction: state.edittingTransaction
+        transactions: state.transactions.map(transaction => {
+          if (transaction._id === action.payload._id) {
+            return action.payload
+          }
+
+          return transaction
+        })
       };
     }
+
     case "SET_EDIT_STATE": {
-      console.log('action.payload', action.payload)
-      return { ...state, edittingTransaction: true, edittedTransaction: action.payload }
-    }
-    case "SET_VIEW_STATE": {
-      return { ...state, edittingTransaction: false, edittedTransaction: null }
+      return {
+        ...state,
+        transactions: state.transactions.map((transaction, index) => {
+          if (transaction._id === action.payload._id) {
+            return action.payload
+          }
+
+          return transaction
+        })
+      }
     }
     default:
       return state;

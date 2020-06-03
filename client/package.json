@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.2",
+    "immutable": "^4.0.0-rc.12",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-modal": "^3.11.2",

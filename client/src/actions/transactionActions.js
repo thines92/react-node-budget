@@ -47,15 +47,22 @@ export const editTransaction = (transaction) => {
     }
 }
 
-export const setEditState = (transactionId) => {
+// export const setEditState = (transactionId) => {
+//     return {
+//         type: "SET_EDIT_STATE",
+//         payload: transactionId
+//     }
+// }
+
+// export const setViewState = () => {
+//     return {
+//         type: "SET_VIEW_STATE"
+//     }
+// }
+
+export const setEditState = (transaction) => {
     return {
         type: "SET_EDIT_STATE",
-        payload: transactionId
-    }
-}
-
-export const setViewState = () => {
-    return {
-        type: "SET_VIEW_STATE"
+        payload: transaction
     }
 }

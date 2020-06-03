@@ -5,7 +5,6 @@ import {
     deleteTransaction,
     editTransaction,
     setEditState,
-    setViewState
 } from "../actions/transactionActions";
 import { connect } from "react-redux";
 import TransactionForm from "./TransactionForm";
@@ -17,6 +16,7 @@ class TransactionTable extends React.Component {
     };
 
     renderTransactions = () => {
+        console.log('renderTransactions', this.props.transactions)
         return this.props.transactions.map((transaction, i) => {
             return (
                 <Transaction
@@ -27,7 +27,6 @@ class TransactionTable extends React.Component {
                     deleteTransaction={this.handleDeleteTransaction}
                     editTransaction={this.handleEditTransaction.bind(this)}
                     setEditState={this.props.setEditState}
-                    setViewState={this.props.setViewState}
                 />
             );
         });
@@ -68,7 +67,6 @@ class TransactionTable extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('state', state)
     return state.transactions;
 };
 export default connect(mapStateToProps, {
@@ -77,5 +75,4 @@ export default connect(mapStateToProps, {
     deleteTransaction,
     editTransaction,
     setEditState,
-    setViewState
 })(TransactionTable);
