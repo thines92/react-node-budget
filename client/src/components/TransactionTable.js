@@ -16,7 +16,6 @@ class TransactionTable extends React.Component {
     };
 
     renderTransactions = () => {
-        console.log('renderTransactions', this.props.transactions)
         return this.props.transactions.map((transaction, i) => {
             return (
                 <Transaction
@@ -31,7 +30,7 @@ class TransactionTable extends React.Component {
     };
 
     handleDeleteTransaction = (id) => {
-        console.log('id', id)
+        console.log("id", id);
         this.props.deleteTransaction(id);
     };
 
@@ -43,7 +42,7 @@ class TransactionTable extends React.Component {
     };
 
     handleEditTransaction = (transaction) => {
-        this.props.editTransaction(transaction)
+        this.props.editTransaction(transaction);
     };
 
     render() {
@@ -57,7 +56,7 @@ class TransactionTable extends React.Component {
                     <div className="six wide column">Source</div>
                 </div>
                 <div className="ui grid container">
-                {this.renderTransactions()}
+                    {this.renderTransactions()}
                 </div>
             </div>
         );

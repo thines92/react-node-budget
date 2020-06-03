@@ -41,7 +41,6 @@ class Transaction extends React.Component {
     }
 
     renderContent() {
-        console.log('this.transactrion', this.props.transaction)
         return this.props.transaction.editState ? this.renderEdit(this.props.transaction) : this.renderRow() 
     }
 
