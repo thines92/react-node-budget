@@ -17,10 +17,11 @@ class TransactionTable extends React.Component {
     };
 
     renderTransactions = () => {
+        console.log('this.props', this.props.transactions)
         return this.props.transactions.map((transaction, i) => {
             return (
                 <Transaction
-                    key={transaction.id.toString()}
+                    key={transaction._id.toString()}
                     transaction={transaction}
                     edittingTransaction={this.props.edittingTransaction}
                     edittedTransaction={this.props.edittedTransaction}
@@ -68,6 +69,7 @@ class TransactionTable extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log('state', state)
     return state.transactions;
 };
 export default connect(mapStateToProps, {

@@ -6,6 +6,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const mongoDB = 'mongodb+srv://thines92:Aidran001@cluster0-t6myq.mongodb.net/budget_db?retryWrites=true&w=majority'
+const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -29,7 +30,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(bodyParser.json());
-
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());

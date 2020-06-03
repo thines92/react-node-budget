@@ -4,7 +4,7 @@ import {
 
 export default (
   state = {
-    transactions: items,
+    transactions: [],
     edittingTransaction: false,
     error: null,
   },
@@ -12,7 +12,10 @@ export default (
 ) => {
   switch (action.type) {
     case "FETCH_TRANSACTIONS": {
-      return state
+      console.log('payload', action.payload)
+      return {
+        ...state, transactions: action.payload.data
+      }
     }
     case "ADD_TRANSACTION": {
       return {
