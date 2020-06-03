@@ -3,7 +3,7 @@ import EditTransaction from "./EditTransaction";
 
 class Transaction extends React.Component {
     setEditState = () => {
-        this.props.setEditState(this.props.transaction.id)
+        this.props.setEditState(this.props.transaction._id)
     };
 
     setViewState = () => {
@@ -42,7 +42,8 @@ class Transaction extends React.Component {
     }
 
     renderContent() {
-        return this.props.edittingTransaction && this.props.edittedTransaction == this.props.transaction.id ? this.renderEdit(this.props.transaction) : this.renderRow() 
+        console.log('this.transactrion', this.props.transaction)
+        return this.props.edittingTransaction && this.props.edittedTransaction == this.props.transaction._id ? this.renderEdit(this.props.transaction) : this.renderRow() 
     }
 
     render() {

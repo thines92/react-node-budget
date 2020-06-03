@@ -17,7 +17,6 @@ export default (
       }
     }
     case "ADD_TRANSACTION": {
-      console.log('action', action)
       return {
         ...state,
         transactions: [...state.transactions],
@@ -35,7 +34,7 @@ export default (
     }
     case "EDIT_TRANSACTION": {
       const editedTransactionIndex = state.transactions.findIndex(
-        (transaction) => transaction.id == action.payload.id
+        (transaction) => transaction._id == action.payload._id
       );
       const editedTransactions = state.transactions.splice(
         editedTransactionIndex, 1, action.payload
@@ -48,10 +47,11 @@ export default (
       };
     }
     case "SET_EDIT_STATE": {
+      console.log('action.payload', action.payload)
       return { ...state, edittingTransaction: true, edittedTransaction: action.payload }
     }
     case "SET_VIEW_STATE": {
-      return { ...state, edittingTransaction: false }
+      return { ...state, edittingTransaction: false, edittedTransaction: null }
     }
     default:
       return state;

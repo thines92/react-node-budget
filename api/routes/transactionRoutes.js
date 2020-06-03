@@ -26,7 +26,7 @@ res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content
         });
     })
 
-    app.put(`/api/transaction:id`, async (req, res) => {
+    app.put(`/api/transaction/:id`, async (req, res) => {
         const {
             id
         } = req.params;
