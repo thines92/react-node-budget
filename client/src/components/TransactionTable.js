@@ -7,7 +7,7 @@ import {
     setEditState,
 } from "../actions/transactionActions";
 import { connect } from "react-redux";
-import TransactionForm from "./TransactionForm";
+import TransactionForm from "./NewTransaction";
 import Transaction from "./Transaction";
 
 class TransactionTable extends React.Component {
