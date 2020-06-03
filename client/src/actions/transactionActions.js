@@ -6,9 +6,15 @@ export const fetchTransactions = () => ({
 })
 
 export const addTransaction = (transaction) => {
-    return {
-        type: "ADD_TRANSACTION",
-        payload: transaction
+    return (dispatch) => {
+        const response = dispatch({
+            type: "ADD_TRANSACTION",
+            payload: axios.post('http://localhost:9000/api/transaction', transaction).then(response => {
+                console.log('response', response)
+            })
+        }).then((data) => {
+            dispatch(fetchTransactions())
+        })
     }
 }
 

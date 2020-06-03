@@ -17,7 +17,6 @@ class TransactionTable extends React.Component {
     };
 
     renderTransactions = () => {
-        console.log('this.props', this.props.transactions)
         return this.props.transactions.map((transaction, i) => {
             return (
                 <Transaction
@@ -40,7 +39,6 @@ class TransactionTable extends React.Component {
 
     handleAddTransaction = (type, source) => {
         this.props.addTransaction({
-            id: this.props.transactions.length,
             type: type,
             source: source,
         });

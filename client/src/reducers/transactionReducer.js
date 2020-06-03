@@ -12,15 +12,15 @@ export default (
 ) => {
   switch (action.type) {
     case "FETCH_TRANSACTIONS": {
-      console.log('payload', action.payload)
       return {
         ...state, transactions: action.payload.data
       }
     }
     case "ADD_TRANSACTION": {
+      console.log('action', action)
       return {
         ...state,
-        transactions: [...state.transactions, action.payload],
+        transactions: [...state.transactions],
       };
     }
     case "DELETE_TRANSACTION": {
