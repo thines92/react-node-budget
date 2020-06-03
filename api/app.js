@@ -22,18 +22,14 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
+require('./routes/transactionRoutes')(app);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(bodyParser.json());
 
-require('./routes/transactionRoutes')(app);
-
-// const path = require('path');
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-// })
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -60,10 +56,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//   console.log(`app running on port ${PORT}`)
-// })
 
 module.exports = app;
