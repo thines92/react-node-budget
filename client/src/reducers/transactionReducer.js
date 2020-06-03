@@ -1,8 +1,6 @@
 export default (
   state = {
     transactions: [],
-    edittingTransaction: false,
-    error: null,
   },
   action
 ) => {

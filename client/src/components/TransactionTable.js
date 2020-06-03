@@ -22,8 +22,6 @@ class TransactionTable extends React.Component {
                 <Transaction
                     key={transaction._id.toString()}
                     transaction={transaction}
-                    edittingTransaction={this.props.edittingTransaction}
-                    edittedTransaction={this.props.edittedTransaction}
                     deleteTransaction={this.handleDeleteTransaction}
                     editTransaction={this.handleEditTransaction.bind(this)}
                     setEditState={this.props.setEditState}

@@ -3,7 +3,6 @@ import EditTransaction from "./EditTransaction";
 
 class Transaction extends React.Component {
     setEditState = () => {
-        // this.props.setEditState(this.props.transaction._id)
         this.props.setEditState({
             ...this.props.transaction,
             editState: true
