@@ -11,7 +11,7 @@ class Transaction extends React.Component {
     }
 
     renderRow() {
-        const { id, type, source } = this.props.transaction;
+        const { _id, type, source } = this.props.transaction;
 
         return (
             <div className="row">
@@ -28,7 +28,7 @@ class Transaction extends React.Component {
                 <div className="two wide column">
                     <button
                         className="ui button red"
-                        onClick={this.props.deleteTransaction.bind(this, id)}
+                        onClick={this.props.deleteTransaction.bind(this, _id)}
                     >
                         Delete
                     </button>

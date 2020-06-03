@@ -23,7 +23,7 @@ class EditTransaction extends React.Component {
 
     onSubmit = (values) => {
         this.props.editTransaction({
-            id: this.props.transaction.id,
+            _id: this.props.transaction.id,
             type: values.type,
             source: values.source
         });

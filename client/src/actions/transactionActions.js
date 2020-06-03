@@ -18,10 +18,21 @@ export const addTransaction = (transaction) => {
     }
 }
 
+// export const deleteTransaction = (transactionId) => {
+//     return {
+//         type: "DELETE_TRANSACTION",
+//         payload: transactionId
+//     }
+// }
+
 export const deleteTransaction = (transactionId) => {
-    return {
-        type: "DELETE_TRANSACTION",
-        payload: transactionId
+    return (dispatch) => {
+        const response = dispatch({
+            type: "DELETE_TRANSACTION",
+            payload: axios.delete(`http://localhost:9000/api/transaction/${transactionId}`)
+        }).then(() => {
+            dispatch(fetchTransactions())
+        }) 
     }
 }
 

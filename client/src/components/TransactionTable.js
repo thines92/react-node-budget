@@ -34,6 +34,7 @@ class TransactionTable extends React.Component {
     };
 
     handleDeleteTransaction = (id) => {
+        console.log('id', id)
         this.props.deleteTransaction(id);
     };
 

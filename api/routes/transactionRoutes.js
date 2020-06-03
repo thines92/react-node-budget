@@ -39,10 +39,9 @@ res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content
         });
     });
 
-    app.delete(`/api/product/:id`, async (req, res) => {
-        const {
-            id
-        } = req.params;
+    app.delete(`/api/transaction/:id`, async (req, res) => {
+        const {id} = req.params;
+        console.log('params', req.params)
 
         let transaction = await Transaction.findByIdAndDelete(id);
 
