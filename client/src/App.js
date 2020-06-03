@@ -1,10 +1,10 @@
 import React from 'react'
-import TransactionTable from './components/TransactionTable.js'
+import BudgetApp from './components/BudgetApp.js'
 
 function App() {
   return (
     <div className="App">
-      <TransactionTable />
+      <BudgetApp />
     </div>
   );
 }
