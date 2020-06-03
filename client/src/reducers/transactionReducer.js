@@ -19,13 +19,13 @@ export default (
       };
     }
     case "DELETE_TRANSACTION": {
-      const filteredTransactions = state.transactions.filter(
-        (transaction) => transaction.id != action.payload
-      );
-
       return {
         ...state,
-        transactions: filteredTransactions,
+        transactions: state.transactions.map(transaction => {
+          if (transaction._id !== action.payload._id) {
+            return transaction
+          }
+        }),
       };
     }
     case "EDIT_TRANSACTION": {
