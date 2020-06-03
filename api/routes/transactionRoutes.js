@@ -3,17 +3,17 @@ const Transaction = mongoose.model('transactions');
 
 module.exports = (app) => {
 
-    app.use(function(req, res, next) {
+    app.use(function (req, res, next) {
         res.header('Access-Control-Allow-Origin', '*');
-res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
         next();
-      });
+    });
 
     app.get(`/api/transaction`, async (req, res) => {
         let transactions = await Transaction.find();
         console.log('transactions', transactions)
-        
+
         return res.status(200).send(transactions);
     });
 
@@ -40,7 +40,9 @@ res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content
     });
 
     app.delete(`/api/transaction/:id`, async (req, res) => {
-        const {id} = req.params;
+        const {
+            id
+        } = req.params;
         console.log('params', req.params)
 
         let transaction = await Transaction.findByIdAndDelete(id);
