@@ -1,32 +1,9 @@
 import axios from 'axios'
 
-// export const fetchTransactions = (transactions, data) => {
-//     console.log('transactions', transactions);
-//     console.log('transaction data', data)
-//     return {
-//         type: "FETCH_TRANSACTIONS",
-//         payload: data
-//     }
-    
-// }
-
 export const fetchTransactions = () => ({
     type: "FETCH_TRANSACTIONS",
     payload: axios.get('http://localhost:9000/api/transaction')
 })
-
-export function getTransactions(transactions) {
-    return function (dispatch) {
-        dispatch(fetchTransactions(transactions))
-
-        return axios.get('http://localhost:9000/api/transaction')
-        .then(response => response.data)
-        .then(data => {
-            console.log('data', data)
-            dispatch(fetchTransactions(transactions, data))
-        })
-    }
-}
 
 export const addTransaction = (transaction) => {
     return {
