@@ -56,7 +56,17 @@ class TransactionTable extends React.Component {
                     <div className="six wide column">Source</div>
                 </div>
                 <div className="ui grid container">
-                    {this.renderTransactions()}
+                    {this.props.transactions.map((transaction, index) => {
+                        return (
+                            <Transaction
+                                key={transaction._id.toString()}
+                                transaction={transaction}
+                                deleteTransaction={this.handleDeleteTransaction}
+                                editTransaction={this.handleEditTransaction.bind(this)}
+                                setEditState={this.props.setEditState}
+                            />
+                        );
+                    })}
                 </div>
             </div>
         );
