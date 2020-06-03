@@ -31,7 +31,8 @@ async function main() {
         // })
 
         // await updateListingByName(client, "Cozy Cottage", { bedrooms: 7, beds: 8 })
-        await deleteListingByName(client, 'Cozy Cottage');
+        // await deleteListingByName(client, 'Cozy Cottage');
+        await findOneListingByName(client, 'test');
     } catch (e) {
         console.error(e);
     } finally {
@@ -52,8 +53,8 @@ async function createListing(client, newListing) {
 }
 
 async function findOneListingByName(client, nameOfListing) {
-    result = await client.db("sample_airbnb").collection("listingsAndReviews")
-                        .findOne({ name: nameOfListing });
+    result = await client.db("budget_db").collection("transactions")
+                        .findOne({ type: nameOfListing });
     if (result) {
         console.log(`Found a listing in the collection with the name '${nameOfListing}':`);
         console.log(result);

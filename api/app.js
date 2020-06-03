@@ -1,19 +1,39 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-import { main } from './connection'
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const mongoDB = 'mongodb+srv://thines92:Aidran001@cluster0-t6myq.mongodb.net/budget_db?retryWrites=true&w=majority'
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var testAPIRouter = require("./routes/testAPI");
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const testAPIRouter = require("./routes/testAPI");
 
-var app = express();
+require('./models/Transaction');
+
+const app = express();
+
+mongoose.Promise = global.Promise;
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+app.use(bodyParser.json());
+
+require('./routes/transactionRoutes')(app);
+
+// const path = require('path');
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+// })
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -40,5 +60,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`app running on port ${PORT}`)
+// })
 
 module.exports = app;

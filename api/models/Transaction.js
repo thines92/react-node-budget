@@ -4,6 +4,6 @@ const { Schema } = mongoose;
 const transactionSchema = new Schema({
     type: String,
     source: String,
-})
+}, { collection: 'transactions' })
 
-mongoose.model('transactions', productSchema)
+module.exports = mongoose.model('transactions', transactionSchema)
