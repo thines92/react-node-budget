@@ -9,7 +9,7 @@ import { FETCH_TRANSACTIONS, ADD_TRANSACTION, EDIT_TRANSACTION, DELETE_TRANSACTI
 
 export const fetchTransactions = () => async (dispatch) => {
     const response = await transactions.get('/transaction');
-    console.log(response.data)
+    console.log('fetchTransactions data', response.data)
 
     dispatch({ type: FETCH_TRANSACTIONS, payload: response.data })
 }
@@ -64,9 +64,10 @@ export const deleteTransaction = (id) => async (dispatch) => {
 //     }
 // }
 
-export const updateTransaction = (id, transaction) => async (dispatch) => {
-    const response = await transactions.put(`/transaction/${id}`, transaction);
-
+export const updateTransaction = (transaction) => async (dispatch) => {
+    console.log('updateTransaction', transaction)
+    const response = await transactions.put(`/transaction/${transaction._id}`, transaction);
+    console.log('updateTransaction data', response.data)
     dispatch({ type: EDIT_TRANSACTION, payload: response.data })
 }
 

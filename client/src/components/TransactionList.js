@@ -36,6 +36,7 @@ class TransactionTable extends React.Component {
     };
 
     render() {
+        console.log('render transactions', this.props)
         return (
             <div>
                 <div className="ui grid container">
