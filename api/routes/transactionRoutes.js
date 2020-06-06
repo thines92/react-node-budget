@@ -19,11 +19,9 @@ module.exports = (app) => {
 
     app.post(`/api/transaction`, async (req, res) => {
         let transaction = await Transaction.create(req.body);
+        let transactions = await Transaction.find();
         console.log('transaction', req.body)
-        return await res.status(201).send({
-            error: false,
-            transaction
-        });
+        return await res.status(201).send(transaction);
     })
 
     app.put(`/api/transaction/:id`, async (req, res) => {

@@ -31,7 +31,9 @@ export const fetchTransactions = () => async (dispatch) => {
 // }
 
 export const addTransaction = (transaction) => async (dispatch) => {
-    const response = await transactions.post('/transaction', transaction);
+    console.log('addTRansaction init')
+    const response = await transactions.post('/transaction', { ...transaction });
+    console.log('addtransaction response', response.data)
 
     dispatch({ type: ADD_TRANSACTION, payload: response.data})
 }

@@ -7,8 +7,10 @@ import { connect } from "react-redux";
 
 class BudgetApp extends React.Component {
 
-    handleAddTransaction = (type, source) => {
-        addTransaction({
+    handleAddTransaction = (transaction) => {
+        console.log('handleAddTransaction', transaction)
+        const { type, source } = transaction
+        this.props.addTransaction({
             type: type,
             source: source,
             editting: false
@@ -19,7 +21,7 @@ class BudgetApp extends React.Component {
         return (
             <div className="ui container stackable">
                 <NewTransaction
-                    addTransaction={this.handleAddTransaction.bind(this)}
+                    addTransaction={this.handleAddTransaction}
                 />
                 <TransactionList />
             </div>

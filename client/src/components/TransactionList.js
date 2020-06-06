@@ -62,7 +62,10 @@ class TransactionTable extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return state.transactions;
+    console.log('mapStateToProps state', state)
+    return {
+        transactions: Object.values(state.transactions)
+    }
 };
 export default connect(mapStateToProps, {
     fetchTransactions,

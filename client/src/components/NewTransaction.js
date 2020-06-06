@@ -78,9 +78,9 @@ class NewTransaction extends React.Component {
         );
     };
 
-    onSubmit = ({ type, source }) => {
-      console.log('onSubmit', type)
-        this.props.addTransaction(type, source);
+    onSubmit = (transaction) => {
+      console.log('onSubmit', this.props)
+        this.props.addTransaction(transaction);
     };
 
     render() {
