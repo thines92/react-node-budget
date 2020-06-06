@@ -6,54 +6,41 @@ import {
     updateEditState,
 } from "../actions/transactionActions";
 import { connect } from "react-redux";
-import Transaction from "./Transaction";
 
 class TransactionTable extends React.Component {
     componentDidMount = () => {
         this.props.fetchTransactions();
     };
 
+    renderEditAndDelete(transaction) {
+        return (
+            <div className="right floated content">
+                <button className="ui button primary" onClick={() => this.props.updateTransaction(transaction)}>Edit</button>
+                <button className="ui button negative" onClick={() => this.props.deleteTransaction(transaction._id)}>Delete</button>
+            </div>
+        );
+    }
+
     renderTransactions = () => {
-        return this.props.transactions.map((transaction, i) => {
+        return this.props.transactions.map((transaction) => {
             return (
-                <Transaction
-                    key={transaction._id.toString()}
-                    transaction={transaction}
-                    deleteTransaction={this.handleDeleteTransaction}
-                    updateTransaction={this.handleEditTransaction.bind(this)}
-                    updateEditState={this.props.updateEditState}
-                />
+                <div className="item" key={transaction._id}>
+                    {this.renderEditAndDelete(transaction)}
+                    <div className="content">
+                        Type: {transaction.type}
+                        <div className="source">Source: {transaction.source}</div>
+                    </div>
+                </div>
             );
         });
-    };
-
-    handleDeleteTransaction = (id) => {
-        this.props.deleteTransaction(id);
-    };
-
-    handleEditTransaction = (transaction) => {
-        this.props.updateTransaction(transaction);
     };
 
     render() {
         return (
             <div>
-                <div className="ui grid container">
-                    <div className="six wide column">Type</div>
-                    <div className="six wide column">Source</div>
-                </div>
-                <div className="ui grid container">
-                    {this.props.transactions.map((transaction, index) => {
-                        return (
-                            <Transaction
-                                key={transaction._id.toString()}
-                                transaction={transaction}
-                                deleteTransaction={this.handleDeleteTransaction}
-                                updateTransaction={this.handleEditTransaction.bind(this)}
-                                updateEditState={this.props.updateEditState}
-                            />
-                        );
-                    })}
+                <h2>Transactions</h2>
+                <div className="ui celled list">
+                    {this.renderTransactions()}
                 </div>
             </div>
         );
@@ -62,8 +49,8 @@ class TransactionTable extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        transactions: Object.values(state.transactions)
-    }
+        transactions: Object.values(state.transactions),
+    };
 };
 export default connect(mapStateToProps, {
     fetchTransactions,
