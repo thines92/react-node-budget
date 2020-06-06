@@ -2,11 +2,13 @@ import React from "react";
 
 import TransactionList from "./TransactionList";
 import NewTransaction from './NewTransaction'
+import { addTransaction } from '../actions/transactionActions'
+import { connect } from "react-redux";
 
 class BudgetApp extends React.Component {
 
     handleAddTransaction = (type, source) => {
-        this.props.addTransaction({
+        addTransaction({
             type: type,
             source: source,
             editting: false
@@ -25,4 +27,13 @@ class BudgetApp extends React.Component {
     }
 }
 
-export default BudgetApp;
+const mapStateToProps = (state) => {
+    return state
+}
+
+export default connect(
+    mapStateToProps,
+    {
+        addTransaction
+    }
+)(BudgetApp);

@@ -11,6 +11,7 @@ export default (
       }
     }
     case "ADD_TRANSACTION": {
+      console.log("ADD_TRANSACTION", action)
       return {
         ...state,
         transactions: [...state.transactions],

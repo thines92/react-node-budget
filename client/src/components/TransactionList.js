@@ -1,13 +1,11 @@
 import React from "react";
 import {
     fetchTransactions,
-    addTransaction,
     deleteTransaction,
     updateTransaction,
     updateEditState,
 } from "../actions/transactionActions";
 import { connect } from "react-redux";
-import TransactionForm from "./NewTransaction";
 import Transaction from "./Transaction";
 
 class TransactionTable extends React.Component {
@@ -67,7 +65,6 @@ const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps, {
     fetchTransactions,
-    addTransaction,
     deleteTransaction,
     updateTransaction,
     updateEditState,
