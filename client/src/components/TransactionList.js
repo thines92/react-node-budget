@@ -33,24 +33,13 @@ class TransactionTable extends React.Component {
         this.props.deleteTransaction(id);
     };
 
-    handleAddTransaction = (type, source) => {
-        this.props.addTransaction({
-            type: type,
-            source: source,
-            editting: false
-        });
-    };
-
     handleEditTransaction = (transaction) => {
         this.props.updateTransaction(transaction);
     };
 
     render() {
         return (
-            <div className="ui container stackable">
-                <TransactionForm
-                    addTransaction={this.handleAddTransaction.bind(this)}
-                />
+            <div>
                 <div className="ui grid container">
                     <div className="six wide column">Type</div>
                     <div className="six wide column">Source</div>
