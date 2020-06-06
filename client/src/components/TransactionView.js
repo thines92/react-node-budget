@@ -1,22 +1,16 @@
-import React from 'react'
-import TransactionView from './TransactionView'
-import TransactionEdit from './TransactionEdit'
+import React from "react";
 
-class Transaction extends React.Component {
-    constructor(props) {
-        super(props);
-
-    }
-    updateEditState = (transaction) => {
+class TransactionView extends React.Component {
+    
+    updateEditState = () => {
         this.props.updateEditState({
-            ...transaction,
-            editting: transaction.editting
+            ...this.props.transaction,
+            editting: !this.props.transaction.editting
         })
     };
 
-    renderRow() {
+    render() {
         const { _id, type, source } = this.props.transaction;
-
         return (
             <div className="row">
                 <div className="six wide column">{type}</div>
@@ -40,16 +34,6 @@ class Transaction extends React.Component {
             </div>
         );
     }
-
-    renderContent() {
-        const { transaction } = this.props;
-
-        return transaction.editting ? <TransactionEdit transaction={transaction} updateEditState={this.updateEditState} updateTransaction={this.props.updateTransaction} /> : <TransactionView transaction={transaction} deleteTransaction={this.props.deleteTransaction} updateEditState={this.updateEditState} />;
-    }
-
-    render() {
-        return this.renderContent()
-    }
 }
 
-export default Transaction;
+export default TransactionView;

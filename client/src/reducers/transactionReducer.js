@@ -46,7 +46,7 @@ export default (
           if (transaction._id === action.payload._id) {
             return {
               ...action.payload,
-              edit: !action.payload.edit
+              editting: action.payload.editting
             }
           }
           return transaction

@@ -7,7 +7,6 @@ export const fetchTransactions = () => ({
 
 export const addTransaction = (transaction) => {
     return (dispatch) => {
-        console.log('addtrans', transaction)
         const response = dispatch({
             type: "ADD_TRANSACTION",
             payload: axios.post('http://localhost:9000/api/transaction', transaction).then(response => {
@@ -30,7 +29,7 @@ export const deleteTransaction = (transactionId) => {
     }
 }
 
-export const editTransaction = (transaction) => {
+export const updateTransaction = (transaction) => {
     return (dispatch) => {
         const response = dispatch({
             type: "EDIT_TRANSACTION",

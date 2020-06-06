@@ -3,7 +3,7 @@ import {
     fetchTransactions,
     addTransaction,
     deleteTransaction,
-    editTransaction,
+    updateTransaction,
     updateEditState,
 } from "../actions/transactionActions";
 import { connect } from "react-redux";
@@ -22,7 +22,7 @@ class TransactionTable extends React.Component {
                     key={transaction._id.toString()}
                     transaction={transaction}
                     deleteTransaction={this.handleDeleteTransaction}
-                    editTransaction={this.handleEditTransaction.bind(this)}
+                    updateTransaction={this.handleEditTransaction.bind(this)}
                     updateEditState={this.props.updateEditState}
                 />
             );
@@ -30,7 +30,6 @@ class TransactionTable extends React.Component {
     };
 
     handleDeleteTransaction = (id) => {
-        console.log("id", id);
         this.props.deleteTransaction(id);
     };
 
@@ -43,7 +42,7 @@ class TransactionTable extends React.Component {
     };
 
     handleEditTransaction = (transaction) => {
-        this.props.editTransaction(transaction);
+        this.props.updateTransaction(transaction);
     };
 
     render() {
@@ -63,7 +62,7 @@ class TransactionTable extends React.Component {
                                 key={transaction._id.toString()}
                                 transaction={transaction}
                                 deleteTransaction={this.handleDeleteTransaction}
-                                editTransaction={this.handleEditTransaction.bind(this)}
+                                updateTransaction={this.handleEditTransaction.bind(this)}
                                 updateEditState={this.props.updateEditState}
                             />
                         );
@@ -81,6 +80,6 @@ export default connect(mapStateToProps, {
     fetchTransactions,
     addTransaction,
     deleteTransaction,
-    editTransaction,
+    updateTransaction,
     updateEditState,
 })(TransactionTable);

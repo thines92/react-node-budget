@@ -1,8 +1,7 @@
-import React from "react";
+import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 
-class EditTransaction extends React.Component {
-
+class TransactionEdit extends React.Component {
     renderError({ error, touched }) {
         if (error && touched) {
           return <div className="ui error message">{error}</div>;
@@ -22,23 +21,22 @@ class EditTransaction extends React.Component {
     };
 
     onSubmit = (values) => {
-        console.log('thiseditRans..transaction', this.props.transaction)
-        this.props.editTransaction({
-            _id: this.props.transaction._id,
+        const { transaction } = this.props
+
+        this.props.updateTransaction({
+            _id: transaction._id,
             type: values.type,
             source: values.source,
-            editting: false
+            editting: !transaction.editting
         });
     }
-
+    
     render() {
         return (
             <div className="row">
                 <form
                     className="ui grid container form error"
-                    onSubmit={this.props.handleSubmit(
-                        this.onSubmit
-                    )}
+                    onSubmit={this.props.handleSubmit(this.onSubmit)}
                 >
                     <div className="field">
                         <Field
@@ -56,7 +54,9 @@ class EditTransaction extends React.Component {
                             className="eight wide column"
                         />
                     </div>
-                    <button className="ui button primary two wide column">Save</button>
+                    <button className="ui button primary two wide column" onClick={() => { this.props.updateTransaction(this.props.transaction); this.props.updateEditState(this.props.transaction) }} >
+                        Save
+                    </button>
                 </form>
             </div>
         );
@@ -78,6 +78,6 @@ const validate = (formValues) => {
   };
 
 export default reduxForm({
-    form: 'editTransaction',
+    form: 'updateTransaction',
     validate: validate
-})(EditTransaction);
+})(TransactionEdit);
