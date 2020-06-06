@@ -39,14 +39,16 @@ export default (
       };
     }
 
-    case "SET_EDIT_STATE": {
+    case "UPDATE_EDIT_STATE": {
       return {
         ...state,
         transactions: state.transactions.map((transaction, index) => {
           if (transaction._id === action.payload._id) {
-            return action.payload
+            return {
+              ...action.payload,
+              edit: !action.payload.edit
+            }
           }
-
           return transaction
         })
       }

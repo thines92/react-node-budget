@@ -22,11 +22,12 @@ class EditTransaction extends React.Component {
     };
 
     onSubmit = (values) => {
-        console.log('this.transaction', this.props.transaction)
+        console.log('thiseditRans..transaction', this.props.transaction)
         this.props.editTransaction({
             _id: this.props.transaction._id,
             type: values.type,
-            source: values.source
+            source: values.source,
+            editting: false
         });
     }
 

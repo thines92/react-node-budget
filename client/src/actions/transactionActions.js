@@ -29,13 +29,6 @@ export const deleteTransaction = (transactionId) => {
     }
 }
 
-// export const editTransaction = (transaction) => {
-//     return {
-//         type: "EDIT_TRANSACTION",
-//         payload: transaction
-//     }
-// }
-
 export const editTransaction = (transaction) => {
     return (dispatch) => {
         const response = dispatch({
@@ -47,22 +40,9 @@ export const editTransaction = (transaction) => {
     }
 }
 
-// export const setEditState = (transactionId) => {
-//     return {
-//         type: "SET_EDIT_STATE",
-//         payload: transactionId
-//     }
-// }
-
-// export const setViewState = () => {
-//     return {
-//         type: "SET_VIEW_STATE"
-//     }
-// }
-
-export const setEditState = (transaction) => {
+export const updateEditState = (transaction) => {
     return {
-        type: "SET_EDIT_STATE",
+        type: "UPDATE_EDIT_STATE",
         payload: transaction
     }
 }

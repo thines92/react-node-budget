@@ -2,8 +2,16 @@ import React from "react";
 import EditTransaction from "./EditTransaction";
 
 class Transaction extends React.Component {
-    setEditState = () => {
-        this.props.setEditState(this.props.transaction._id)
+    constructor(props) {
+        super(props);
+
+    }
+    updateEditState = () => {
+        console.log('updateEditState trans', this.props.transaction)
+        this.props.updateEditState({
+            ...this.props.transaction,
+            editting: !this.props.transaction.editting
+        })
     };
 
     renderRow() {
@@ -16,7 +24,7 @@ class Transaction extends React.Component {
                 <div className="two wide column">
                     <button
                         className="ui button primary"
-                        onClick={this.setEditState}
+                        onClick={this.updateEditState}
                     >
                         Edit
                     </button>
@@ -38,8 +46,8 @@ class Transaction extends React.Component {
     }
 
     renderContent() {
-        console.log('this.transactrion', this.props.transaction)
-        return this.props.edittingTransaction && this.props.edittedTransaction == this.props.transaction._id ? this.renderEdit(this.props.transaction) : this.renderRow() 
+        console.log('rendreContent trans', this.props.transaction)
+        return this.props.edittingTransaction ? this.renderEdit(this.props.transaction) : this.renderRow() 
     }
 
     render() {

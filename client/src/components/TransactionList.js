@@ -4,7 +4,7 @@ import {
     addTransaction,
     deleteTransaction,
     editTransaction,
-    setEditState,
+    updateEditState,
 } from "../actions/transactionActions";
 import { connect } from "react-redux";
 import TransactionForm from "./NewTransaction";
@@ -23,7 +23,7 @@ class TransactionTable extends React.Component {
                     transaction={transaction}
                     deleteTransaction={this.handleDeleteTransaction}
                     editTransaction={this.handleEditTransaction.bind(this)}
-                    setEditState={this.props.setEditState}
+                    updateEditState={this.props.updateEditState}
                 />
             );
         });
@@ -63,7 +63,7 @@ class TransactionTable extends React.Component {
                                 transaction={transaction}
                                 deleteTransaction={this.handleDeleteTransaction}
                                 editTransaction={this.handleEditTransaction.bind(this)}
-                                setEditState={this.props.setEditState}
+                                updateEditState={this.props.updateEditState}
                             />
                         );
                     })}
@@ -81,5 +81,5 @@ export default connect(mapStateToProps, {
     addTransaction,
     deleteTransaction,
     editTransaction,
-    setEditState,
+    updateEditState,
 })(TransactionTable);
