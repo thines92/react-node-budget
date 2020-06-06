@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 class BudgetApp extends React.Component {
 
     handleAddTransaction = (transaction) => {
-        console.log('handleAddTransaction', transaction)
         const { type, source } = transaction
         this.props.addTransaction({
             type: type,

@@ -36,7 +36,6 @@ class TransactionTable extends React.Component {
     };
 
     render() {
-        console.log('render transactions', this.props)
         return (
             <div>
                 <div className="ui grid container">
@@ -62,7 +61,6 @@ class TransactionTable extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('mapStateToProps state', state)
     return {
         transactions: Object.values(state.transactions)
     }

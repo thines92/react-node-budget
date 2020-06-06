@@ -59,7 +59,6 @@ import { useDispatch, useSelector } from "react-redux";
 // };
 
 class NewTransaction extends React.Component {
-
     renderError({ error, touched }) {
         if (error && touched) {
             return <div className="ui error message">{error}</div>;
@@ -79,7 +78,6 @@ class NewTransaction extends React.Component {
     };
 
     onSubmit = (transaction) => {
-      console.log('onSubmit', this.props)
         this.props.addTransaction(transaction);
     };
 
@@ -119,7 +117,6 @@ class NewTransaction extends React.Component {
 }
 
 const validate = (formValues) => {
-  console.log('validate', formValues);
     const errors = {};
 
     if (!formValues.type) {
