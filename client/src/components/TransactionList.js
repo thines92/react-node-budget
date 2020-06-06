@@ -38,6 +38,7 @@ class TransactionTable extends React.Component {
         this.props.addTransaction({
             type: type,
             source: source,
+            editting: false
         });
     };
 
