@@ -7,7 +7,7 @@ export default (
   switch (action.type) {
     case "FETCH_TRANSACTIONS": {
       return {
-        ...state, transactions: action.payload.data
+        ...state, transactions: action.payload
       }
     }
     case "ADD_TRANSACTION": {
