@@ -1,7 +1,12 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { useDispatch } from 'react-redux'
 
-class TransactionForm extends React.Component {
+class NewTransaction extends React.Component {
+
+  dispatch = (action) => {
+    useDispatch(action);
+  }
 
   renderError({ error, touched }) {
     if (error && touched) {
@@ -30,6 +35,7 @@ class TransactionForm extends React.Component {
       <div>
         <form
           onSubmit={this.props.handleSubmit(this.onSubmit)}
+          // onSubmit={this.dispatch({ type: "ADD_TRANSACTION", action: this.props.transaction })}
           className="ui form error"
         >
           <h4 className="ui dividing header">Add Category</h4>
@@ -72,4 +78,4 @@ const validate = (formValues) => {
 export default reduxForm({
   form: "addTransaction",
   validate: validate,
-})(TransactionForm);
+})(NewTransaction);
