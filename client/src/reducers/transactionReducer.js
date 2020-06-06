@@ -15,7 +15,7 @@ export default (state = {}, action) => {
             return _.omit(state, action.payload);
         }
         case "UPDATE_EDIT_STATE": {
-            return { ...state, [action.payload._id]: action.payload }
+            return { ...state, [action.payload._id]: { ...action.payload, editting: !action.payload.editting } }
         }
         default:
             return state;
