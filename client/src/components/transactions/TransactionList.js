@@ -1,26 +1,26 @@
-import React from 'react'
+import React from 'react';
 import {
 	fetchTransactions,
 	deleteTransaction,
 	updateTransaction,
 	updateEditState,
-} from '../actions/transactionActions'
-import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+} from '../../actions/transactionActions';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 
 class TransactionList extends React.Component {
 	componentDidMount = () => {
-		this.props.fetchTransactions()
-	}
+		this.props.fetchTransactions();
+	};
 
 	renderError({ error, touched }) {
 		if (error && touched) {
-			return <div className="ui error message">{error}</div>
+			return <div className="ui error message">{error}</div>;
 		}
 	}
 
 	renderInput = ({ input, label, meta }) => {
-		const className = `field ${meta.error && meta.touched ? 'error' : ''}`
+		const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
 
 		return (
 			<div className={className}>
@@ -28,19 +28,19 @@ class TransactionList extends React.Component {
 				<input {...input} autoComplete="off" />
 				{this.renderError(meta)}
 			</div>
-		)
-	}
+		);
+	};
 
 	onSubmit = (values) => {
-		const { transaction } = this.props
+		const { transaction } = this.props;
 
 		this.props.updateTransaction({
 			_id: transaction._id,
 			type: values.type,
 			source: values.source,
 			editting: !transaction.editting,
-		})
-	}
+		});
+	};
 
 	renderViewTransaction(transaction) {
 		return (
@@ -51,7 +51,7 @@ class TransactionList extends React.Component {
 					<div className="source">Source: {transaction.source}</div>
 				</div>
 			</div>
-		)
+		);
 	}
 
 	renderEditTransaction(transaction) {
@@ -86,7 +86,7 @@ class TransactionList extends React.Component {
 					{this.renderSaveAndCancel()}
 				</div>
 			</form>
-		)
+		);
 	}
 
 	renderEditAndDelete(transaction) {
@@ -107,7 +107,7 @@ class TransactionList extends React.Component {
 					Delete
 				</button>
 			</div>
-		)
+		);
 	}
 
 	renderSaveAndCancel(transaction) {
@@ -121,23 +121,23 @@ class TransactionList extends React.Component {
 				</button>
 				<button className="ui button negative">Cancel</button>
 			</div>
-		)
+		);
 	}
 
 	renderTransaction(transaction) {
 		if (!transaction.editting) {
-			return this.renderViewTransaction(transaction)
+			return this.renderViewTransaction(transaction);
 		} else {
-			console.log('transaction', this.renderEditTransaction(transaction))
-			return this.renderEditTransaction(transaction)
+			console.log('transaction', this.renderEditTransaction(transaction));
+			return this.renderEditTransaction(transaction);
 		}
 	}
 
 	renderTransactions = () => {
 		return this.props.transactions.map((transaction) => {
-			return this.renderTransaction(transaction)
-		})
-	}
+			return this.renderTransaction(transaction);
+		});
+	};
 
 	render() {
 		return (
@@ -147,38 +147,38 @@ class TransactionList extends React.Component {
 					{this.renderTransactions()}
 				</div>
 			</div>
-		)
+		);
 	}
 }
 
 const mapStateToProps = (state) => {
 	return {
 		transactions: Object.values(state.transactions),
-	}
-}
+	};
+};
 
 const validate = (formValues) => {
-	const errors = {}
+	const errors = {};
 
 	if (!formValues.type) {
-		errors.type = 'Enter a title'
+		errors.type = 'Enter a title';
 	}
 
 	if (!formValues.source) {
-		errors.source = 'Enter a source'
+		errors.source = 'Enter a source';
 	}
 
-	return errors
-}
+	return errors;
+};
 
 const formWrapped = reduxForm({
 	form: 'transactionEdit',
 	validate: validate,
-})(TransactionList)
+})(TransactionList);
 
 export default connect(mapStateToProps, {
 	fetchTransactions,
 	deleteTransaction,
 	updateTransaction,
 	updateEditState,
-})(formWrapped)
+})(formWrapped);
