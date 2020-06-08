@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 
 class TransactionEdit extends React.Component {
 	componentDidMount() {
-		console.log(this.props);
 		this.props.fetchTransaction(this.props.match.params.id);
 	}
 
@@ -18,7 +17,6 @@ class TransactionEdit extends React.Component {
 	};
 
 	render() {
-		console.log(this.props.transaction);
 		return (
 			<div>
 				<h2>Edit a Transaction</h2>
