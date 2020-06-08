@@ -72,6 +72,6 @@ const validate = (formValues) => {
 };
 
 export default reduxForm({
-	form: 'addTransaction',
+	form: 'transactionForm',
 	validate: validate,
 })(TransactionForm);

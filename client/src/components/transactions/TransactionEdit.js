@@ -1,83 +1,48 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import React from 'react';
+import _ from 'lodash';
+import TransactionForm from './TransactionForm';
+import {
+	fetchTransaction,
+	editTransaction,
+} from '../../actions/transactionActions';
+import { connect } from 'react-redux';
 
 class TransactionEdit extends React.Component {
-    renderError({ error, touched }) {
-        if (error && touched) {
-          return <div className="ui error message">{error}</div>;
-        }
-      }
-      
-    renderInput = ({ input, label, meta }) => {
-        const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+	componentDidMount() {
+		console.log(this.props);
+		this.props.fetchTransaction(this.props.match.params.id);
+	}
 
-        return (
-            <div className={className}>
-                <label>{label}</label>
-                <input {...input} autoComplete="off" />
-                {this.renderError(meta)}
-            </div>
-        );
-    };
+	onSubmit = (formValues) => {
+		this.props.editTransaction(this.props.match.params.id, formValues);
+	};
 
-    onSubmit = (values) => {
-        const { transaction } = this.props
-
-        this.props.updateTransaction({
-            _id: transaction._id,
-            type: values.type,
-            source: values.source,
-            editting: !transaction.editting
-        });
-    }
-    
-    render() {
-        return (
-            <div className="row">
-                <form
-                    className="ui grid container form error"
-                    onSubmit={this.props.handleSubmit(this.onSubmit)}
-                >
-                    <div className="field">
-                        <Field
-                            name="type"
-                            component={this.renderInput}
-                            label="Type"
-                            className="eight wide column"
-                        />
-                    </div>
-                    <div className="field">
-                        <Field
-                            name="source"
-                            component={this.renderInput}
-                            label="Source"
-                            className="eight wide column"
-                        />
-                    </div>
-                    <button className="ui button primary two wide column" onClick={() => { this.props.updateTransaction(this.props.transaction); this.props.updateEditState(this.props.transaction) }} >
-                        Save
-                    </button>
-                </form>
-            </div>
-        );
-    }
+	render() {
+		console.log(this.props.transaction);
+		return (
+			<div>
+				<h2>Edit a Transaction</h2>
+				<div className="ui celled list">
+					<TransactionForm
+						initialValues={_.pick(this.props.transaction, [
+							'type',
+							'source',
+						])}
+						onSubmit={this.onSubmit}
+					/>
+				</div>
+			</div>
+		);
+	}
 }
 
-const validate = (formValues) => {
-    const errors = {};
-  
-    if (!formValues.type) {
-      errors.type = "Enter a title";
-    }
-  
-    if (!formValues.source) {
-      errors.source = "Enter a source";
-    }
-  
-    return errors;
-  };
+const mapStateToProps = (state, ownProps) => {
+	return {
+		transaction: state.transactions[ownProps.match.params.id],
+	};
+};
 
-export default reduxForm({
-    form: 'updateTransaction',
-    validate: validate
+export default connect(mapStateToProps, {
+	editTransaction,
+	fetchTransaction,
 })(TransactionEdit);

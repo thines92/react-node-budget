@@ -2,52 +2,57 @@ const mongoose = require('mongoose');
 const Transaction = mongoose.model('transactions');
 
 module.exports = (app) => {
+	app.use(function (req, res, next) {
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header(
+			'Access-Control-Allow-Methods',
+			'GET,PUT,POST,DELETE,OPTIONS'
+		);
+		res.header(
+			'Access-Control-Allow-Headers',
+			'Content-Type, Authorization, Content-Length, X-Requested-With'
+		);
+		next();
+	});
 
-    app.use(function (req, res, next) {
-        res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-        next();
-    });
+	app.get(`/api/transaction`, async (req, res) => {
+		let transactions = await Transaction.find();
+		console.log('transactions', transactions);
 
-    app.get(`/api/transaction`, async (req, res) => {
-        let transactions = await Transaction.find();
-        console.log('transactions', transactions)
+		return res.status(200).send(transactions);
+	});
 
-        return res.status(200).send(transactions);
-    });
+	app.get(`/api/transaction/:id`, async (req, res) => {
+		let transactions = await Transaction.findById(req.params.id);
+		console.log('transactions', transactions);
 
-    app.post(`/api/transaction`, async (req, res) => {
-        let transaction = await Transaction.create(req.body);
-        let transactions = await Transaction.find();
-        console.log('transaction', req.body)
-        return await res.status(201).send(transaction);
-    })
+		return res.status(200).send(transactions);
+	});
 
-    app.put(`/api/transaction/:id`, async (req, res) => {
-        const {
-            id
-        } = req.params;
+	app.post(`/api/transaction`, async (req, res) => {
+		let transaction = await Transaction.create(req.body);
 
-        let transaction = await Transaction.findByIdAndUpdate(id, req.body);
+		return await res.status(201).send(transaction);
+	});
 
-        return res.status(202).send({
-            error: false,
-            transaction
-        });
-    });
+	app.patch(`/api/transaction/:id`, async (req, res) => {
+		let transaction = await Transaction.findByIdAndUpdate(
+			req.params.id,
+			req.body
+		);
 
-    app.delete(`/api/transaction/:id`, async (req, res) => {
-        const {
-            id
-        } = req.params;
-        console.log('params', req.params)
+		return res.status(202).send(transaction);
+	});
 
-        let transaction = await Transaction.findByIdAndDelete(id);
+	app.delete(`/api/transaction/:id`, async (req, res) => {
+		const { id } = req.params;
+		console.log('params', req.params);
 
-        return res.status(202).send({
-            error: false,
-            transaction
-        });
-    });
-}
+		let transaction = await Transaction.findByIdAndDelete(id);
+
+		return res.status(202).send({
+			error: false,
+			transaction,
+		});
+	});
+};

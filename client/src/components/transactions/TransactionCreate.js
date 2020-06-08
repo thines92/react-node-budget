@@ -2,7 +2,7 @@ import React from 'react';
 import {
 	fetchTransactions,
 	deleteTransaction,
-	updateTransaction,
+	editTransaction,
 	updateEditState,
 } from '../../actions/transactionActions';
 import { connect } from 'react-redux';
@@ -13,7 +13,7 @@ class TransactionCreate extends React.Component {
 	onSubmit = (values) => {
 		const { transaction } = this.props;
 
-		this.props.updateTransaction({
+		this.props.editTransaction({
 			_id: transaction._id,
 			type: values.type,
 			source: values.source,
@@ -94,7 +94,7 @@ class TransactionCreate extends React.Component {
 			<div className="right floated content">
 				<button
 					className="ui button primary"
-					// onClick={() => this.props.updateTransaction(transaction)}
+					// onClick={() => this.props.editTransaction(transaction)}
 				>
 					Save
 				</button>
@@ -139,6 +139,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
 	fetchTransactions,
 	deleteTransaction,
-	updateTransaction,
+	editTransaction,
 	updateEditState,
 })(TransactionCreate);
