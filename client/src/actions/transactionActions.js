@@ -45,10 +45,3 @@ export const deleteTransaction = (id) => async (dispatch) => {
 
 	dispatch({ type: DELETE_TRANSACTION, payload: id });
 };
-
-export const updateEditState = (transaction) => {
-	return {
-		type: 'UPDATE_EDIT_STATE',
-		payload: transaction,
-	};
-};

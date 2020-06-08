@@ -5,7 +5,6 @@ const transactionSchema = new Schema(
 	{
 		type: String,
 		source: String,
-		editting: false,
 	},
 	{ collection: 'transactions' }
 );
