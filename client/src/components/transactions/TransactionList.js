@@ -1,5 +1,8 @@
 import React from 'react';
-import { fetchTransactions } from '../../actions/transactionActions';
+import {
+	fetchTransactions,
+	deleteTransaction,
+} from '../../actions/transactionActions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -33,12 +36,14 @@ class TransactionList extends React.Component {
 				>
 					Edit
 				</Link>
-				<Link
-					to={`/transaction/delete/${transaction._id}`}
+				<button
 					className="ui button negative"
+					onClick={() =>
+						this.props.deleteTransaction(transaction._id)
+					}
 				>
 					Delete
-				</Link>
+				</button>
 			</div>
 		);
 	}
@@ -72,4 +77,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
 	fetchTransactions,
+	deleteTransaction,
 })(TransactionList);
