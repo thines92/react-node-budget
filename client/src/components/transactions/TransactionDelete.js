@@ -1,6 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
-import TransactionForm from './TransactionForm';
+import Modal from '../Modal';
 import {
 	fetchTransaction,
 	deleteTransaction,
@@ -8,8 +7,26 @@ import {
 import { connect } from 'react-redux';
 
 class TransactionDelete extends React.Component {
+	componentDidMount() {
+		this.props.fetchTransaction();
+	}
+
+	renderContent() {
+		return;
+	}
+
+	renderActions() {
+		return;
+	}
+
 	render() {
-		return <div>DeleteTransaction</div>;
+		return (
+			<Modal
+				title="Delete Stream"
+				content={this.renderContent}
+				actions={this.renderActions}
+			/>
+		);
 	}
 }
 
