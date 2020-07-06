@@ -1,5 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
+import Modal from '../Modal';
+import history from '../../history';
 import TransactionForm from './TransactionForm';
 import {
 	fetchTransaction,
@@ -16,9 +18,9 @@ class TransactionEdit extends React.Component {
 		this.props.editTransaction(this.props.match.params.id, formValues);
 	};
 
-	render() {
+	renderContent() {
 		return (
-			<div>
+			<React.Fragment>
 				<h2>Edit a Transaction</h2>
 				<div className="ui celled list">
 					<TransactionForm
@@ -29,7 +31,17 @@ class TransactionEdit extends React.Component {
 						onSubmit={this.onSubmit}
 					/>
 				</div>
-			</div>
+			</React.Fragment>
+		);
+	}
+
+	render() {
+		return (
+			<Modal
+				title="Edit Stream"
+				content={this.renderContent()}
+				onDismiss={() => history.push('/')}
+			/>
 		);
 	}
 }

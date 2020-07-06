@@ -36,14 +36,20 @@ class TransactionList extends React.Component {
 				>
 					Edit
 				</Link>
-				<button
+				{/* <button
 					className="ui button negative"
 					onClick={() =>
 						this.props.deleteTransaction(transaction._id)
 					}
 				>
 					Delete
-				</button>
+				</button> */}
+				<Link
+					to={`/transactions/delete/${transaction._id}`}
+					className="ui button negative"
+				>
+					Delete
+				</Link>
 			</div>
 		);
 	}

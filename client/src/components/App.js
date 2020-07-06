@@ -25,7 +25,7 @@ function App() {
 						component={TransactionEdit}
 					/>
 					<Route
-						path="/transactions/delete"
+						path="/transactions/delete/:id"
 						exact
 						component={TransactionDelete}
 					/>

@@ -44,4 +44,5 @@ export const deleteTransaction = (id) => async (dispatch) => {
 	await transactions.delete(`/transaction/${id}`, id);
 
 	dispatch({ type: DELETE_TRANSACTION, payload: id });
+	history.push('/');
 };

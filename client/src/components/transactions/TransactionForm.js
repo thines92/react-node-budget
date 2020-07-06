@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
 class TransactionForm extends React.Component {
@@ -51,6 +52,9 @@ class TransactionForm extends React.Component {
 					</div>
 
 					<button className="ui button primary">Submit</button>
+					<Link to="/" className="ui button">
+						Cancel
+					</Link>
 				</form>
 			</div>
 		);
