@@ -14,13 +14,21 @@ class TransactionList extends React.Component {
 	renderList = () => {
 		return this.props.transactions.map((transaction) => {
 			return (
+				// <div className="item" key={transaction._id}>
+				// 	{this.renderEditAndDelete(transaction)}
+				// 	<div className="content">
+				// 		Type: {transaction.type}
+				// 		<div className="source">
+				// 			Source: {transaction.source}
+				// 		</div>
+				// 	</div>
+				// </div>
 				<div className="item" key={transaction._id}>
 					{this.renderEditAndDelete(transaction)}
 					<div className="content">
-						Type: {transaction.type}
-						<div className="source">
-							Source: {transaction.source}
-						</div>
+						<a className="header">{transaction.title}</a>
+						<div class="meta">{transaction.category}</div>
+						<div class="description">{transaction.amount}</div>
 					</div>
 				</div>
 			);
@@ -36,14 +44,6 @@ class TransactionList extends React.Component {
 				>
 					Edit
 				</Link>
-				{/* <button
-					className="ui button negative"
-					onClick={() =>
-						this.props.deleteTransaction(transaction._id)
-					}
-				>
-					Delete
-				</button> */}
 				<Link
 					to={`/transactions/delete/${transaction._id}`}
 					className="ui button negative"
@@ -68,7 +68,7 @@ class TransactionList extends React.Component {
 		return (
 			<div>
 				<h2>Transactions</h2>
-				<div className="ui celled list">{this.renderList()}</div>
+				<div className="ui items">{this.renderList()}</div>
 				{this.renderCreateButton()}
 			</div>
 		);
