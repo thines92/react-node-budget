@@ -20,7 +20,7 @@ class TransactionDelete extends React.Component {
 			return 'Are you sure you want to delete this transaction:';
 		}
 
-		return `Are you sure you want to delete this transaction: ${this.props.transaction.source}`;
+		return `Are you sure you want to delete this transaction: ${this.props.transaction.title}`;
 	}
 
 	renderActions() {
