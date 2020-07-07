@@ -36,16 +36,23 @@ class TransactionForm extends React.Component {
 						<div className="two fields">
 							<div className="field">
 								<Field
-									name="type"
+									name="title"
 									component={this.renderInput}
-									label="Type"
+									label="Title"
 								/>
 							</div>
 							<div className="field">
 								<Field
-									name="source"
+									name="category"
 									component={this.renderInput}
-									label="Source"
+									label="Category"
+								/>
+							</div>
+							<div className="field">
+								<Field
+									name="amount"
+									component={this.renderInput}
+									label="Amount"
 								/>
 							</div>
 						</div>
