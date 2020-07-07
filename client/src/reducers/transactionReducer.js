@@ -6,7 +6,7 @@ import {
 	ADD_TRANSACTION,
 	EDIT_TRANSACTION,
 	DELETE_TRANSACTION,
-} from './types';
+} from '../types';
 
 export default (state = {}, action) => {
 	switch (action.type) {

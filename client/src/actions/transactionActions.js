@@ -7,7 +7,7 @@ import {
 	ADD_TRANSACTION,
 	EDIT_TRANSACTION,
 	DELETE_TRANSACTION,
-} from './types';
+} from '../types';
 
 export const fetchTransaction = (id) => async (dispatch) => {
 	const response = await transactions.get(`/transaction/${id}`);
