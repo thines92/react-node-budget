@@ -14,15 +14,6 @@ class TransactionList extends React.Component {
 	renderList = () => {
 		return this.props.transactions.map((transaction) => {
 			return (
-				// <div className="item" key={transaction._id}>
-				// 	{this.renderEditAndDelete(transaction)}
-				// 	<div className="content">
-				// 		Type: {transaction.type}
-				// 		<div className="source">
-				// 			Source: {transaction.source}
-				// 		</div>
-				// 	</div>
-				// </div>
 				<div className="item" key={transaction._id}>
 					{this.renderEditAndDelete(transaction)}
 					<div className="content">
