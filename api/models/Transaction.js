@@ -3,10 +3,10 @@ const { Schema } = mongoose;
 
 const transactionSchema = new Schema(
 	{
-		id: Int32Array,
+		id: Number,
 		title: String,
-		amount: Int32Array,
-		category: String
+		amount: Number,
+		category: String,
 	},
 	{ collection: 'transactions' }
 );
