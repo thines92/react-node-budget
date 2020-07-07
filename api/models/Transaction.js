@@ -3,7 +3,6 @@ const { Schema } = mongoose;
 
 const transactionSchema = new Schema(
 	{
-		id: Number,
 		title: String,
 		amount: Number,
 		category: String,
