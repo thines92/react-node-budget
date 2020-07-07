@@ -28,8 +28,9 @@ class TransactionEdit extends React.Component {
 				<div className="ui celled list">
 					<TransactionForm
 						initialValues={_.pick(this.props.transaction, [
-							'type',
-							'source',
+							'title',
+							'category',
+							'amount',
 						])}
 						onSubmit={this.onSubmit}
 					/>
