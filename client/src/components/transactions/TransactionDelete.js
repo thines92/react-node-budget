@@ -12,6 +12,7 @@ class TransactionDelete extends React.Component {
 	componentDidMount() {
 		console.log(this.props);
 		this.props.fetchTransaction(this.props.match.params.id);
+		console.log(this.props);
 	}
 
 	renderContent() {
@@ -53,7 +54,7 @@ class TransactionDelete extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-	console.log(state);
+	console.log('state: ' + JSON.stringify(state));
 	return {
 		transaction: state.transactions[ownProps.match.params.id],
 	};

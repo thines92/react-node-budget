@@ -19,6 +19,9 @@ class TransactionEdit extends React.Component {
 	};
 
 	renderContent() {
+		if (!this.props.transaction) {
+			return 'Test';
+		}
 		return (
 			<React.Fragment>
 				<h2>Edit a Transaction</h2>
