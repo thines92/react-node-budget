@@ -1,10 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import _ from 'lodash';
 import {
 	fetchTransactions,
 	deleteTransaction,
 } from '../../actions/transactionActions';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+
+const TransactionStyle = {
+	width: '75%',
+	height: '75px',
+};
+
+const EditAndDeleteStyle = {
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'space-between',
+};
 
 class TransactionList extends React.Component {
 	componentDidMount = () => {
@@ -15,12 +27,14 @@ class TransactionList extends React.Component {
 		return this.props.transactions.map((transaction) => {
 			return (
 				<div className="item" key={transaction._id}>
-					{this.renderEditAndDelete(transaction)}
-					<div className="content">
-						<a className="header">{transaction.title}</a>
-						<div class="meta">{transaction.category}</div>
-						<div class="description">{transaction.amount}</div>
+					<div className="content" style={TransactionStyle}>
+						<a className="header">Title: {transaction.title}</a>
+						<div class="meta">Category: {transaction.category}</div>
+						<div class="description">
+							Amount: {transaction.amount}
+						</div>
 					</div>
+					{this.renderEditAndDelete(transaction)}
 				</div>
 			);
 		});
@@ -28,7 +42,7 @@ class TransactionList extends React.Component {
 
 	renderEditAndDelete(transaction) {
 		return (
-			<div className="right floated content">
+			<div className="right floated content" style={EditAndDeleteStyle}>
 				<Link
 					to={`/transactions/edit/${transaction._id}`}
 					className="ui button primary"
